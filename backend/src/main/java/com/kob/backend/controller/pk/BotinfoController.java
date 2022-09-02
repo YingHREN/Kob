@@ -15,6 +15,7 @@ public class BotinfoController {
     public Map<String,String> getBotInfo() {
         Map<String, String> map = new HashMap<>();
         map.put("name", "tiger");
+        map.put("rating", "99");
         return map;
     }
 }
