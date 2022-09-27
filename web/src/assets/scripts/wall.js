@@ -2,7 +2,7 @@ import { BotgameObject } from "./BotgameObject";
 
 export class wall extends BotgameObject{
     constructor(r, c, gamemap){
-        super();
+        super(); 
         this.r = r;
         this.c = c;
         this.gamemap = gamemap;
