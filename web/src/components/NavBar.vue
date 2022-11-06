@@ -17,17 +17,29 @@
           <router-link :class="route_name == 'RankListindex' ? 'nav-link active': 'nav-link'" :to="{name:'RankListindex'}">Rank</router-link>
         </li>
       </ul>
-      <ul class="navbar-nav">
+      <ul class="navbar-nav" v-if = "$store.state.user.is_login">
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            RYH
+            {{$store.state.user.username}}
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
             <li><router-link class="dropdown-item" :to="{name:'UserbotIndex'}">My Bot</router-link></li>
             
             <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="#">Exit</a></li>
+            <li><a class="dropdown-item" href="#" @click="logout">Exit</a></li>
           </ul>
+        </li>
+      </ul>
+      <ul class="navbar-nav" v-else-if = "$store.state.user.pulling_info">
+        <li class="nav-item">
+          <router-link class="nav-link" :to="{name:'user_account_login'}" role="button">
+            login
+          </router-link>
+        </li>
+        <li class="nav-item">
+          <router-link class="nav-link" :to= "{name:'user_account_register'}" role="button">
+            register            
+          </router-link>
         </li>
       </ul>
     </div>
@@ -38,12 +50,19 @@
 // import RecordIndex from "../views/record/RecordIndex.vue";
 import { useRoute } from 'vue-router';
 import {computed} from 'vue'
+import store from '@/store';
 export default{
   setup(){
     const route =useRoute();
     let route_name = computed(()=>route.name)
+
+    const logout = () => {
+      store.dispatch("logout");
+    }
+
     return {
-      route_name
+      route_name,
+      logout
     }
   }
 }
