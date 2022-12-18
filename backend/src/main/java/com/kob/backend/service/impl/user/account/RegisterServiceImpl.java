@@ -63,7 +63,7 @@ public class RegisterServiceImpl implements RegisterSevice {
         }
 
         String encodedPassword = passwordEncoder.encode(password);
-        String photo = "https://baike.baidu.com/pic/%E7%BA%A2%E7%8C%AA/1526989/0/83025aafa40f4bfbfbed971d9e1e6ff0f736afc3b263?fr=lemma&fromModule=lemma_content-image&ct=single";
+        String photo = "";
         User user = new User(null, username, encodedPassword, photo);
         userMapper.insert(user);
         map.put("error_message","success");
